@@ -22,7 +22,7 @@ public class UserService implements IUserService{
 	}
 
 
-	public Optional<User> findUserById(int id) {
+	public Optional<User> findUserById(Long id) {
 		return userRepo.findById(id);
 	}
 	
@@ -40,7 +40,7 @@ public class UserService implements IUserService{
 		
 	}
 
-	public User updateUser(int id,User user) {
+	public User updateUser(Long id,User user) {
 		
 		Optional<User> retrievedUser=userRepo.findById(id);
 		if(retrievedUser==null)
@@ -54,7 +54,7 @@ public class UserService implements IUserService{
 		
 	}
 	
-	public User deleteUser(int userId) {
+	public User deleteUser(Long userId) {
 		
 		Optional<User> retrievedUser=userRepo.findById(userId);
 		if(retrievedUser==null)

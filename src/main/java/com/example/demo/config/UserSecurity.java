@@ -12,9 +12,9 @@ public class UserSecurity {
 	@Autowired
 	UserRepository userRepo;
 	
-	public boolean hasUserId(Authentication authentication, Integer userId) {
+	public boolean hasUserId(Authentication authentication, Long userId) {
 		
-		int userID=userRepo.findByUserName(authentication.getName()).getUserId();
+		Long userID=userRepo.findByUserName(authentication.getName()).getUserId();
 //		System.out.println(userId+"  "+userID);
             if(userID==userId)
             	return true;

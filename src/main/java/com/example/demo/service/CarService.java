@@ -22,7 +22,7 @@ public class CarService implements ICarService{
 	}
 
 
-	public Optional<Car> findCarById(int id) {
+	public Optional<Car> findCarById(Long id) {
 		return carRepo.findById(id);
 	}
 	
@@ -41,7 +41,7 @@ public class CarService implements ICarService{
 		
 	}
 
-	public Car updateCar(int id,Car car) {
+	public Car updateCar(Long id,Car car) {
 		
 		Optional<Car> retrievedCar=carRepo.findById(id);
 		
@@ -56,7 +56,7 @@ public class CarService implements ICarService{
 		
 	}
 	
-	public Car deleteCar(int CarId) {
+	public Car deleteCar(Long CarId) {
 		
 		Optional<Car> retrievedCar=carRepo.findById(CarId);
 		if(retrievedCar==null)

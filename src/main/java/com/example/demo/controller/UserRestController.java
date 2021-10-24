@@ -56,20 +56,20 @@ public class UserRestController {
 	
 	@PreAuthorize("@userSecurity.hasUserId(authentication,#userId)")
 	@GetMapping("/users/{userId}")
-	public ResponseEntity<User> getUserById(@PathVariable("userId") int userId, Authentication authentication) {
+	public ResponseEntity<User> getUserById(@PathVariable("userId") Long userId, Authentication authentication) {
 		System.out.println("Inside getuserbyid method");
 		return ResponseEntity.ok().body(userService.findUserById(userId).get());
 		
 	}
 	
 	@PutMapping("/users/{userId}")
-	public ResponseEntity<User> updateUser(@PathVariable("userId") int UserId,@RequestBody User newUser) {
+	public ResponseEntity<User> updateUser(@PathVariable("userId") Long UserId,@RequestBody User newUser) {
 		return ResponseEntity.ok().body(userService.updateUser(UserId,newUser));
 		
 	}
 	
 	@DeleteMapping("/users/{userId}")
-	public ResponseEntity<Object> deleteUser(@PathVariable("userId") int UserId) {
+	public ResponseEntity<Object> deleteUser(@PathVariable("userId") Long UserId) {
 		 userService.deleteUser(UserId);
 		 return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		

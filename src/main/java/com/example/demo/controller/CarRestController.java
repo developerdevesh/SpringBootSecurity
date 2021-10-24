@@ -48,19 +48,19 @@ public class CarRestController {
 	}
 	
 	@GetMapping("/cars/{id}")
-	public ResponseEntity<Car> getCarById(@PathVariable("id") int carId) {
+	public ResponseEntity<Car> getCarById(@PathVariable("id") Long carId) {
 		return ResponseEntity.ok().body(carservice.findCarById(carId).get());
 		
 	}
 	
 	@PutMapping("/cars/{id}")
-	public ResponseEntity<Car> updateCar(@PathVariable("id") int carId,@RequestBody Car newCar) {
+	public ResponseEntity<Car> updateCar(@PathVariable("id") Long carId,@RequestBody Car newCar) {
 		return ResponseEntity.ok().body(carservice.updateCar(carId,newCar));
 		
 	}
 	
 	@DeleteMapping("/cars/{id}")
-	public ResponseEntity<Object> deleteCar(@PathVariable("id") int carId) {
+	public ResponseEntity<Object> deleteCar(@PathVariable("id") Long carId) {
 		 carservice.deleteCar(carId);
 		 return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		

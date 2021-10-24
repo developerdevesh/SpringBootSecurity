@@ -10,7 +10,7 @@ public interface ICarService {
 	
 	public List<Car> findAllCars() ;
 
-	public Optional<Car> findCarById(int id);
+	public Optional<Car> findCarById(Long id);
 	
 	public Car findByCarName(String CarName) ;
 

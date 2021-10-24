@@ -10,7 +10,7 @@ public interface IUserService {
 	
 	public List<User> findAllUsers() ;
 
-	public Optional<User> findUserById(int id);
+	public Optional<User> findUserById(Long id);
 	
 	public User findByUserName(String userName) ;
 

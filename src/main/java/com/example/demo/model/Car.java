@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,13 +16,13 @@ public class Car {
 	@Id
 	@Column(name="car_id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int carId;
+	private Long carId;
 	
 	@Column(name="car_name")
 	private String carName;
 		
 	@Column(name="price")
-	private int price;
+	private BigDecimal price;
 	
 	@Column(name="brand")
 	private String brand;
@@ -33,7 +35,7 @@ public class Car {
 		super();
 	}
 
-	public Car(int carId, String carName, int price, String brand,String owner) {
+	public Car(Long carId, String carName, BigDecimal price, String brand,String owner) {
 		super();
 		this.carId = carId;
 		this.carName = carName;
@@ -42,11 +44,13 @@ public class Car {
 		this.owner= owner;
 	}
 
-	public int getCarId() {
+	
+
+	public Long getCarId() {
 		return carId;
 	}
 
-	public void setCarId(int carId) {
+	public void setCarId(Long carId) {
 		this.carId = carId;
 	}
 
@@ -58,11 +62,11 @@ public class Car {
 		this.carName = carName;
 	}
 
-	public int getprice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setprice(int price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 
