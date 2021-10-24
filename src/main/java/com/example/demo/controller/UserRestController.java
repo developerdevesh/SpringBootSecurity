@@ -2,16 +2,17 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import javax.annotation.security.RolesAllowed;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
-import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.BCryptVersion;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,8 +33,11 @@ public class UserRestController {
 	
 	@Autowired
 	UserService userService;
+	@Autowired
+	@Qualifier("BCryptEncoder")
+	PasswordEncoder passwordEncoder;
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
 	@GetMapping("/users")
 	public List<User> getAllUsers(Authentication authentication) {
 		
@@ -44,6 +48,8 @@ public class UserRestController {
 	@PostMapping("/users")
 	public ResponseEntity<User> saveusers(@RequestBody User newUser,Authentication auth) {
 		System.out.println(newUser.getUserName()+"  "+auth.getName());
+//		bcryptPasswordEncoder=new BCryptPasswordEncoder(BCryptVersion.$2Y, 12);
+		newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
 		return ResponseEntity.status(HttpStatus.CREATED).body((userService.saveUser(newUser)));
 		
 	}

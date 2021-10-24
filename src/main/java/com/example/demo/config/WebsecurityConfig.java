@@ -1,6 +1,7 @@
 package com.example.demo.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,6 +11,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.BCryptVersion;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -39,8 +42,10 @@ public class WebsecurityConfig extends WebSecurityConfigurerAdapter {
 
 	
 	@Bean
+	@Qualifier("BCryptEncoder")
 	public PasswordEncoder passwordEncoder() {
-		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+//		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		return new BCryptPasswordEncoder(BCryptVersion.$2Y,12);
 
 		
 	}
@@ -49,7 +54,7 @@ public class WebsecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		
-		http.authorizeRequests().antMatchers(HttpMethod.POST).hasAnyRole("ADMIN","MANAGER")
+		http.authorizeRequests()//.antMatchers(HttpMethod.POST).hasAnyRole("ADMIN","MANAGER")
 		.antMatchers(HttpMethod.PUT).hasAnyRole("ADMIN","MANAGER")
 		.antMatchers(HttpMethod.DELETE).hasAnyRole("MANAGER")
 		.antMatchers(HttpMethod.GET,"/v1/cars").hasAnyRole("ADMIN","MANAGER","USER")

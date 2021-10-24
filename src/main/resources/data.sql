@@ -5,7 +5,7 @@ INSERT INTO USER (user_id,user_name,password,role) VALUES (
    1, 'Sam','{bcrypt}$2y$12$946HuJr2jwqLLe5wqwJBJeupc.TS/3MdUFXDnqGpbVh8VfW5T6dZW','admin');
 
 INSERT INTO USER (user_id,user_name,password,role) VALUES (
-   2, 'Gaby','{bcrypt}$2y$12$2MPQpp2HSypP4XNP6Dwd3.WBeG2ARFkrYbzLBRwgrLOFZsEouXqyK','admin'); 
+   2, 'Gaby','$2y$12$2MPQpp2HSypP4XNP6Dwd3.WBeG2ARFkrYbzLBRwgrLOFZsEouXqyK','admin'); 
    
 INSERT INTO USER (user_id,user_name,password,role) VALUES (
    3, 'Tim','{bcrypt}$2y$12$R3m9wqwHTyKbhqGYoXgBMuDvNTqxs7aTJnE4XQwdo1LC9h375O5AS','user'); 
@@ -46,6 +46,10 @@ INSERT INTO USER (user_id,user_name,password,role) VALUES (
 INSERT INTO USER (user_id,user_name,password,role) VALUES (
    15, 'Jen','{bcrypt}$2y$12$R3m9wqwHTyKbhqGYoXgBMuDvNTqxs7aTJnE4XQwdo1LC9h375O5AS','user'); 
    
+--   INSERT INTO USER (user_id,user_name,password,role) VALUES (
+--   1001, 'devesh','{bcrypt}$2y$12$vUmXPSXGX2Q5Xu5tpW8wl.kUYueEtruMv/uEJ2TuanrmBilQIqKZG','admin'); 
+   --update user set password='{bcrypt}$2y$12$vUmXPSXGX2Q5Xu5tpW8wl.kUYueEtruMv/uEJ2TuanrmBilQIqKZG' where user_name='devesh'
+
 
 
 INSERT INTO car (car_id,car_name,price,brand, owner) VALUES (1, 'Veloster',18600 , 'Hyundai','Sam');
