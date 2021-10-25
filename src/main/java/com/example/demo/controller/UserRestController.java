@@ -37,7 +37,7 @@ public class UserRestController {
 	@Qualifier("BCryptEncoder")
 	PasswordEncoder passwordEncoder;
 	
-//	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
 	@GetMapping("/users")
 	public List<User> getAllUsers(Authentication authentication) {
 		
