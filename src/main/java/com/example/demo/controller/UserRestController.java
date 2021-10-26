@@ -41,6 +41,8 @@ public class UserRestController {
 	@GetMapping("/users")
 	public List<User> getAllUsers(Authentication authentication) {
 		
+		int i=5/0;
+		
 		return userService.findAllUsers();
 		
 	}
