@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -59,11 +60,15 @@ public class UserRestControllerTest {
         
         RequestBuilder requestBuilders = MockMvcRequestBuilders.get("/v1/users").accept(MediaType.APPLICATION_JSON);
 
-        MvcResult result = mockMvc.perform(requestBuilders).andReturn();
+        MvcResult result = mockMvc.perform(requestBuilders)
+                .andExpect(MockMvcResultMatchers.content()
+                        .json("[" + "  {" + "    \"userId\": 1," + "    \"userName\": \"Gaby\"," + "    \"password\": \"dummyPassword\"," 
+                                + "  }" + "]", false))
+                .andReturn();
 
         assertNotNull(result);
-
         System.out.println("Response is" + result.getResponse().getContentAsString());
+        // assertThat("Gaby", Matchers.containsString(result.getResponse().getContentAsString()));
 
     }
 
