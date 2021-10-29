@@ -13,9 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.BCryptVersion;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.AuthenticationEntryPoint;
 
 @Configuration
 public class WebsecurityConfig extends WebSecurityConfigurerAdapter {
@@ -57,9 +55,9 @@ public class WebsecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()//.antMatchers(HttpMethod.POST).hasAnyRole("ADMIN","MANAGER")
 		.antMatchers(HttpMethod.PUT).hasAnyRole("ADMIN","MANAGER")
 		.antMatchers(HttpMethod.DELETE).hasAnyRole("MANAGER")
-		.antMatchers(HttpMethod.GET,"/v1/cars").hasAnyRole("ADMIN","MANAGER","USER")
+                .antMatchers(HttpMethod.GET, "/v1/cars").hasAnyRole("ADMIN", "MANAGER")
 			
-		.antMatchers(HttpMethod.GET,"/v1/users").hasAnyRole("ADMIN","MANAGER")
+                .antMatchers(HttpMethod.GET, "/v1/users").hasAnyRole("ADMIN", "MANAGER", "USER")
 //		.antMatchers(HttpMethod.GET,"/v1/users/{userId}").access("@userSecurity.hasUserId(authentication,#userId)");
 		.antMatchers(HttpMethod.GET,"/v1/users/{userId}").access("@userSecurity.hasUserId(authentication,#userId)")
 		;
